@@ -28,6 +28,7 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
+      <ScrollToTopButton />
       <WhatsAppButton />
     </>
   );
