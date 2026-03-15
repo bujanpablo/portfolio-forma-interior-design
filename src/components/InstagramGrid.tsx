@@ -21,7 +21,14 @@ const InstagramGrid = () => {
           transition={{ duration: 0.5 }}
           className="label-text text-stone mb-4"
         >
-          {t("instagram.handle")}
+          <a
+            href="https://www.instagram.com/forma.studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-terracotta transition-colors duration-300"
+          >
+            {t("instagram.handle")}
+          </a>
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 32 }}
