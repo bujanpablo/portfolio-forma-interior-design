@@ -10,20 +10,20 @@ const Hero = () => {
       {/* Background image with fallback */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85"
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1800&q=85"
           alt="Interior de diseño moderno"
           className="w-full h-full object-cover"
           loading="eager"
           onError={(e) => {
             (e.target as HTMLImageElement).src =
-              "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1800&q=85";
+              "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=85";
           }}
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(10,10,9,0.85) 0%, rgba(10,10,9,0.45) 50%, rgba(10,10,9,0.3) 100%)",
+              "linear-gradient(180deg, rgba(10,10,9,0.55) 0%, rgba(10,10,9,0.45) 50%, rgba(10,10,9,0.75) 100%)",
           }}
         />
       </div>
@@ -48,7 +48,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.9, ease: "easeOut" }}
-              className="font-display font-bold text-white uppercase leading-[0.95] tracking-[0.02em]"
+              className="font-display font-normal text-white uppercase leading-[0.95] tracking-[0.02em]"
               style={{ fontSize: "clamp(52px, 8vw, 100px)" }}
             >
               {line}
