@@ -31,8 +31,8 @@ export default {
         stone: "#7A7570",
         "muted-stone": "#B0AAA2",
         terracotta: {
-          DEFAULT: "#A0522D",
-          light: "#C4784E",
+          DEFAULT: "#9B4A2E",
+          light: "#B5603D",
         },
         gold: "#C9A96E",
         primary: {
