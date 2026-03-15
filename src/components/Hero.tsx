@@ -60,13 +60,20 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="hidden md:flex gap-4 text-[11px] uppercase tracking-[0.12em] text-white/60 font-body"
+            className="hidden md:flex gap-5 items-center"
           >
-            <a href="#" className="hover:text-white/90 transition-colors duration-300">IG</a>
-            <span>·</span>
-            <a href="#" className="hover:text-white/90 transition-colors duration-300">LI</a>
-            <span>·</span>
-            <a href="#" className="hover:text-white/90 transition-colors duration-300">BE</a>
+            <a href="#" className="text-white/60 hover:text-white transition-colors duration-300">
+              <Instagram size={18} />
+            </a>
+            <a href="#" className="text-white/60 hover:text-white transition-colors duration-300">
+              <Facebook size={18} />
+            </a>
+            <a href="#" className="text-white/60 hover:text-white transition-colors duration-300">
+              <Linkedin size={18} />
+            </a>
+            <a href="#" className="text-white/60 hover:text-white transition-colors duration-300">
+              <Music size={18} />
+            </a>
           </motion.div>
 
           {/* Scroll indicator */}
