@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronUp } from "lucide-react";
 
 const ScrollToTopButton = () => {
   const [visible, setVisible] = useState(false);
+  const prevScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 300);
+    const onScroll = () => {
+      const current = window.scrollY;
+      setVisible(current < prevScrollY.current && current > 300);
+      prevScrollY.current = current;
+    };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
