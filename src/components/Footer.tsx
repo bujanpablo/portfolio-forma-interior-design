@@ -39,12 +39,11 @@ const Footer = () => {
           <span className="font-body text-[11px] text-muted-stone tracking-[0.06em]">
             {t("footer.copyright")}
           </span>
-          <div className="flex gap-4 text-[11px] uppercase tracking-[0.12em] text-muted-stone font-body">
-            <a href="#" className="hover:text-white transition-colors duration-300">Instagram</a>
-            <span className="text-white/20">·</span>
-            <a href="#" className="hover:text-white transition-colors duration-300">LinkedIn</a>
-            <span className="text-white/20">·</span>
-            <a href="#" className="hover:text-white transition-colors duration-300">Pinterest</a>
+          <div className="flex gap-5 items-center">
+            <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Instagram size={18} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Facebook size={18} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Linkedin size={18} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Music size={18} /></a>
           </div>
         </div>
       </div>
