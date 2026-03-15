@@ -1,14 +1,38 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const photos = [
-  { src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&q=80", w: 240, h: 300, top: "5%", left: "3%", speed: 0.04 },
-  { src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80", w: 160, h: 200, top: "50%", left: "8%", speed: 0.07 },
-  { src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=450&q=80", w: 200, h: 240, top: "30%", left: "18%", speed: 0.05 },
-  { src: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=80", w: 220, h: 280, top: "3%", right: "5%", speed: 0.06 },
-  { src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80", w: 160, h: 200, top: "55%", right: "8%", speed: 0.08 },
-  { src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=450&q=80", w: 190, h: 230, top: "28%", right: "20%", speed: 0.04 },
+  {
+    src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&q=80",
+    hover: "https://images.unsplash.com/photo-1615529162924-f8605388461d?w=500&q=80",
+    w: 220, h: 280, top: 40, left: "2%", right: undefined, rotate: -2, speed: 0.04,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80",
+    hover: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=80",
+    w: 155, h: 195, top: 280, left: "10%", right: undefined, rotate: 1.5, speed: 0.07,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=450&q=80",
+    hover: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=450&q=80",
+    w: 190, h: 235, top: 80, left: "20%", right: undefined, rotate: 2.5, speed: 0.05,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=80",
+    hover: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&q=80",
+    w: 210, h: 270, top: 30, left: undefined, right: "2%", rotate: 2, speed: 0.06,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80",
+    hover: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=80",
+    w: 155, h: 195, top: 270, left: undefined, right: "10%", rotate: -1.5, speed: 0.08,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=450&q=80",
+    hover: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=450&q=80",
+    w: 185, h: 225, top: 70, left: undefined, right: "20%", rotate: -2.5, speed: 0.04,
+  },
 ];
 
 const FloatingCollage = () => {
@@ -17,8 +41,17 @@ const FloatingCollage = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="nosotros" ref={ref} className="relative bg-warm-white py-32 md:py-48 overflow-hidden min-h-[90vh]">
-      <div className="relative z-10 text-center px-[5%]">
+    <section
+      id="nosotros"
+      ref={ref}
+      className="relative bg-warm-white overflow-hidden"
+      style={{ minHeight: 700 }}
+    >
+      {/* Central title */}
+      <div
+        className="absolute z-10 text-center px-[5%]"
+        style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+      >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +66,7 @@ const FloatingCollage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display font-light uppercase leading-[1.1]"
+          className="font-display font-normal uppercase leading-[1.1]"
           style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
         >
           {t("collage.line1")}
@@ -45,13 +78,15 @@ const FloatingCollage = () => {
         </motion.h2>
       </div>
 
-      <div className="hidden lg:block">
+      {/* Floating photos — desktop */}
+      <div className="hidden lg:block" style={{ minHeight: 700 }}>
         {photos.map((photo, i) => (
           <ParallaxPhoto key={i} photo={photo} scrollYProgress={scrollYProgress} />
         ))}
       </div>
 
-      <div className="lg:hidden grid grid-cols-2 gap-3 px-[5%] mt-12">
+      {/* Mobile fallback grid */}
+      <div className="lg:hidden grid grid-cols-2 gap-3 px-[5%] py-24">
         {photos.slice(0, 4).map((photo, i) => (
           <motion.div
             key={i}
@@ -63,7 +98,7 @@ const FloatingCollage = () => {
           >
             <img
               src={photo.src}
-              alt={t("collage.imgAlt")}
+              alt="Interior design"
               className="w-full h-48 object-cover hover:scale-[1.04] transition-transform duration-700"
               loading="lazy"
             />
@@ -75,33 +110,44 @@ const FloatingCollage = () => {
 };
 
 interface ParallaxPhotoProps {
-  photo: typeof photos[0];
+  photo: (typeof photos)[0];
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
 }
 
 const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, photo.speed * -400]);
-  const { t } = useLanguage();
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      className="absolute overflow-hidden"
+      className="absolute overflow-hidden cursor-pointer"
       style={{
         width: photo.w,
         height: photo.h,
         top: photo.top,
         left: photo.left,
-        right: (photo as any).right,
+        right: photo.right,
+        rotate: photo.rotate,
         y,
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       data-cursor-view
     >
-      <motion.img
+      {/* Base image */}
+      <img
         src={photo.src}
-        alt={t("collage.imgAlt")}
-        className="w-full h-full object-cover"
-        whileHover={{ scale: 1.04 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        alt="Interior design"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out"
+        style={{ opacity: hovered ? 0 : 1 }}
+        loading="lazy"
+      />
+      {/* Hover image */}
+      <img
+        src={photo.hover}
+        alt="Interior design"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out"
+        style={{ opacity: hovered ? 1 : 0 }}
         loading="lazy"
       />
     </motion.div>
