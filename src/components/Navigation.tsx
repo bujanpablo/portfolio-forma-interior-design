@@ -52,6 +52,7 @@ const Navigation = () => {
             key={link.href}
             onClick={() => scrollTo(link.href)}
             className="text-white text-[11px] uppercase tracking-[0.16em] font-body font-normal transition-opacity duration-300 hover:opacity-60"
+            style={{ cursor: "none" }}
           >
             {link.label}
           </button>
