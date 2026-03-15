@@ -39,6 +39,17 @@ const Footer = () => {
           <span className="font-body text-[11px] text-muted-stone tracking-[0.06em]">
             {t("footer.copyright")}
           </span>
+          <span className="font-body text-[11px] uppercase tracking-[0.12em] text-muted-stone">
+            Site by{" "}
+            <a
+              href="https://www.gullyhq.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors duration-300"
+            >
+              GULLY.HQ™
+            </a>
+          </span>
           <div className="flex gap-5 items-center">
             <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Instagram size={18} /></a>
             <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Facebook size={18} /></a>
