@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const projectKeys = [
   { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=900&q=80", nameKey: "projects.p1.name", typeKey: "projects.p1.type" },
@@ -30,6 +31,10 @@ const SelectedProjects = () => {
   };
 
   const progress = (current + 1) / projectKeys.length;
+
+  const arrowBtnClass =
+    "absolute top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 border border-white/40 hover:border-white/70"
+  ;
 
   return (
     <section id="proyectos" className="bg-charcoal py-24 md:py-32">
@@ -67,59 +72,75 @@ const SelectedProjects = () => {
           </motion.span>
         </div>
 
-        <div
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {projectKeys.map((project, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="snap-start flex-shrink-0 w-[85%] md:w-[42%]"
-              data-cursor-view
-            >
-              <div className="overflow-hidden mb-4 h-[400px] md:h-[500px]">
-                <motion.img
-                  src={project.src}
-                  alt={t(project.nameKey)}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.04 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="font-display text-white text-xl uppercase tracking-[0.06em] font-light mb-1">
-                {t(project.nameKey)}
-              </h3>
-              <p className="text-terracotta text-[12px] uppercase tracking-[0.12em] font-body">
-                {t(project.typeKey)}
-              </p>
-            </motion.div>
-          ))}
+        {/* Carousel wrapper with overlaid arrows */}
+        <div className="relative">
+          {/* Left arrow */}
+          <button
+            onClick={() => scrollTo(-1)}
+            className={arrowBtnClass}
+            style={{
+              left: 16,
+              background: "rgba(255,255,255,0.15)",
+              backdropFilter: "blur(4px)",
+            }}
+            aria-label={t("projects.prev")}
+          >
+            <ChevronLeft size={20} className="text-white" />
+          </button>
+
+          {/* Right arrow */}
+          <button
+            onClick={() => scrollTo(1)}
+            className={arrowBtnClass}
+            style={{
+              right: 16,
+              background: "rgba(255,255,255,0.15)",
+              backdropFilter: "blur(4px)",
+            }}
+            aria-label={t("projects.next")}
+          >
+            <ChevronRight size={20} className="text-white" />
+          </button>
+
+          <div
+            ref={containerRef}
+            onScroll={handleScroll}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {projectKeys.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="snap-start flex-shrink-0 w-[85%] md:w-[42%]"
+                data-cursor-view
+              >
+                <div className="overflow-hidden mb-4 h-[400px] md:h-[500px]">
+                  <motion.img
+                    src={project.src}
+                    alt={t(project.nameKey)}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.04 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="font-display text-white text-xl uppercase tracking-[0.06em] font-light mb-1">
+                  {t(project.nameKey)}
+                </h3>
+                <p className="text-terracotta text-[12px] uppercase tracking-[0.12em] font-body">
+                  {t(project.typeKey)}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        <div className="flex items-center justify-between mt-6">
-          <div className="flex gap-3">
-            <button
-              onClick={() => scrollTo(-1)}
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:border-white transition-colors duration-300"
-              aria-label={t("projects.prev")}
-            >
-              ←
-            </button>
-            <button
-              onClick={() => scrollTo(1)}
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:border-white transition-colors duration-300"
-              aria-label={t("projects.next")}
-            >
-              →
-            </button>
-          </div>
+        {/* Progress bar only */}
+        <div className="flex justify-end mt-6">
           <div className="w-32 h-[2px] bg-white/10 rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-white rounded-full"
