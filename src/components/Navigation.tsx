@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -10,6 +10,7 @@ const navLinks = [
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const scrollTo = (href: string) => {
     setMenuOpen(false);
@@ -17,15 +18,29 @@ const Navigation = () => {
     el?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY >= 80);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <nav
       className="fixed top-0 left-0 w-full z-[100] px-[5%] py-6 flex items-center justify-between"
-      style={{ mixBlendMode: "difference" }}
+      style={{
+        background: isScrolled ? "#1C1C1A" : "transparent",
+        boxShadow: isScrolled ? "0 1px 0 rgba(255,255,255,0.06)" : "none",
+        transition: "background 0.4s ease, box-shadow 0.4s ease",
+      }}
     >
       <a
         href="#"
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
         className="font-display text-white text-xl tracking-[0.22em] uppercase font-light"
+        style={{ cursor: "none" }}
       >
         Forma
       </a>
@@ -37,6 +52,7 @@ const Navigation = () => {
             key={link.href}
             onClick={() => scrollTo(link.href)}
             className="text-white text-[11px] uppercase tracking-[0.16em] font-body font-normal transition-opacity duration-300 hover:opacity-60"
+            style={{ cursor: "none" }}
           >
             {link.label}
           </button>
