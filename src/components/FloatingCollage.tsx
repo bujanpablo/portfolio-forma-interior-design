@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const photos = [
   { src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&q=80", w: 240, h: 300, top: "5%", left: "3%", speed: 0.04 },
@@ -13,10 +14,10 @@ const photos = [
 const FloatingCollage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { t } = useLanguage();
 
   return (
     <section id="nosotros" ref={ref} className="relative bg-warm-white py-32 md:py-48 overflow-hidden min-h-[90vh]">
-      {/* Center text */}
       <div className="relative z-10 text-center px-[5%]">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +26,7 @@ const FloatingCollage = () => {
           transition={{ duration: 0.6 }}
           className="label-text text-stone mb-6"
         >
-          Forma Studio
+          {t("collage.label")}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 32 }}
@@ -35,23 +36,21 @@ const FloatingCollage = () => {
           className="font-display font-light uppercase leading-[1.1]"
           style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
         >
-          La fusión perfecta de
+          {t("collage.line1")}
           <br />
-          <span>DISEÑO </span>
-          <span className="text-terracotta">y</span>
+          <span>{t("collage.design")}</span>
+          <span className="text-terracotta">{t("collage.and")}</span>
           <br />
-          funcionalidad
+          {t("collage.line3")}
         </motion.h2>
       </div>
 
-      {/* Floating photos - hidden on mobile */}
       <div className="hidden lg:block">
         {photos.map((photo, i) => (
           <ParallaxPhoto key={i} photo={photo} scrollYProgress={scrollYProgress} />
         ))}
       </div>
 
-      {/* Mobile photo grid */}
       <div className="lg:hidden grid grid-cols-2 gap-3 px-[5%] mt-12">
         {photos.slice(0, 4).map((photo, i) => (
           <motion.div
@@ -64,7 +63,7 @@ const FloatingCollage = () => {
           >
             <img
               src={photo.src}
-              alt="Diseño interior"
+              alt={t("collage.imgAlt")}
               className="w-full h-48 object-cover hover:scale-[1.04] transition-transform duration-700"
               loading="lazy"
             />
@@ -82,6 +81,7 @@ interface ParallaxPhotoProps {
 
 const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, photo.speed * -400]);
+  const { t } = useLanguage();
 
   return (
     <motion.div
@@ -98,7 +98,7 @@ const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
     >
       <motion.img
         src={photo.src}
-        alt="Diseño interior"
+        alt={t("collage.imgAlt")}
         className="w-full h-full object-cover"
         whileHover={{ scale: 1.04 }}
         transition={{ duration: 0.6, ease: "easeOut" }}

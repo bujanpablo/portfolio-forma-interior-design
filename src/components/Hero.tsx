@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
-  const lines = ["Todo espacio tiene", "el potencial", "de inspirar."];
+  const { t } = useLanguage();
+  const lines = [t("hero.line1"), t("hero.line2"), t("hero.line3")];
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background image */}
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=85"
@@ -21,19 +22,16 @@ const Hero = () => {
         />
       </div>
 
-      {/* Content */}
       <div className="relative h-full flex flex-col justify-end px-[5%] pb-16">
-        {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           className="label-text text-white/70 text-center mb-6"
         >
-          Interior Design Studio
+          {t("hero.eyebrow")}
         </motion.p>
 
-        {/* Title */}
         <div className="text-center mb-16">
           {lines.map((line, i) => (
             <motion.h1
@@ -49,9 +47,7 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Bottom row */}
         <div className="flex items-end justify-between">
-          {/* Social */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -65,7 +61,6 @@ const Hero = () => {
             <a href="#" className="hover:text-white/90 transition-colors duration-300">BE</a>
           </motion.div>
 
-          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -79,7 +74,7 @@ const Hero = () => {
               className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-body"
               style={{ writingMode: "vertical-rl" }}
             >
-              Scroll
+              {t("hero.scroll")}
             </span>
           </motion.div>
         </div>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const photos = [
   { src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", tall: true },
@@ -8,6 +9,8 @@ const photos = [
 ];
 
 const InstagramGrid = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-cream py-24 md:py-32">
       <div className="px-[5%] max-w-[1440px] mx-auto">
@@ -18,7 +21,7 @@ const InstagramGrid = () => {
           transition={{ duration: 0.5 }}
           className="label-text text-stone mb-4"
         >
-          @forma.studio
+          {t("instagram.handle")}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 32 }}
@@ -28,7 +31,7 @@ const InstagramGrid = () => {
           className="font-display font-light uppercase leading-[1.1] mb-12"
           style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
         >
-          Seguinos en <span className="text-terracotta">Instagram.</span>
+          {t("instagram.titlePrefix")}<span className="text-terracotta">{t("instagram.titleAccent")}</span>
         </motion.h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
@@ -44,7 +47,7 @@ const InstagramGrid = () => {
             >
               <motion.img
                 src={photo.src}
-                alt="Instagram Forma Studio"
+                alt={t("instagram.imgAlt")}
                 className={`w-full object-cover ${i % 2 === 0 ? "h-[260px] md:h-[360px]" : "h-[200px] md:h-[280px]"}`}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
