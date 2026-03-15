@@ -49,7 +49,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.9, ease: "easeOut" }}
-              className="font-display font-bold text-white uppercase leading-[0.95] tracking-[0.02em]"
+              className="font-display font-normal text-white uppercase leading-[0.95] tracking-[0.02em]"
               style={{ fontSize: "clamp(52px, 8vw, 100px)" }}
             >
               {line}
