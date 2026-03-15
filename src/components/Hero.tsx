@@ -7,47 +7,58 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
+      {/* Background image with fallback */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=85"
+          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85"
           alt="Interior de diseño moderno"
           className="w-full h-full object-cover"
           loading="eager"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src =
+              "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1800&q=85";
+          }}
         />
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to top, rgba(17,17,16,0.75) 0%, rgba(17,17,16,0.2) 60%, transparent 100%)",
+            background:
+              "linear-gradient(to top, rgba(10,10,9,0.85) 0%, rgba(10,10,9,0.45) 50%, rgba(10,10,9,0.3) 100%)",
           }}
         />
       </div>
 
+      {/* Content — pinned to lower 40% */}
       <div className="relative h-full flex flex-col justify-end px-[5%] pb-16">
+        {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="label-text text-white/70 text-center mb-6"
+          className="label-text text-white/60 text-center mb-6"
         >
           {t("hero.eyebrow")}
         </motion.p>
 
-        <div className="text-center mb-16">
+        {/* Title — large, impactful */}
+        <div className="text-center mb-20">
           {lines.map((line, i) => (
             <motion.h1
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + i * 0.15, duration: 0.8, ease: "easeOut" }}
-              className="font-display font-light text-white uppercase leading-[1.05]"
-              style={{ fontSize: "clamp(42px, 7vw, 96px)", letterSpacing: "0.03em" }}
+              transition={{ delay: 0.4 + i * 0.15, duration: 0.9, ease: "easeOut" }}
+              className="font-display font-bold text-white uppercase leading-[0.95] tracking-[0.02em]"
+              style={{ fontSize: "clamp(52px, 8vw, 100px)" }}
             >
               {line}
             </motion.h1>
           ))}
         </div>
 
+        {/* Bottom row */}
         <div className="flex items-end justify-between">
+          {/* Social */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -61,6 +72,7 @@ const Hero = () => {
             <a href="#" className="hover:text-white/90 transition-colors duration-300">BE</a>
           </motion.div>
 
+          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
