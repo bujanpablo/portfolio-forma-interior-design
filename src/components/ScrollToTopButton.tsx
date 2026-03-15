@@ -17,7 +17,7 @@ const ScrollToTopButton = () => {
       style={{
         width: 44,
         height: 44,
-        bottom: 96,
+        bottom: 78,
         right: 24,
         opacity: visible ? 1 : 0,
         pointerEvents: visible ? "auto" : "none",
