@@ -40,6 +40,7 @@ const Navigation = () => {
         href="#"
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
         className="font-display text-white text-xl tracking-[0.22em] uppercase font-light"
+        style={{ cursor: "none" }}
       >
         Forma
       </a>
