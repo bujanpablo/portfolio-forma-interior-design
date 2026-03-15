@@ -1,0 +1,91 @@
+import { motion } from "framer-motion";
+
+const Hero = () => {
+  const lines = ["Todo espacio tiene", "el potencial", "de inspirar."];
+
+  return (
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=85"
+          alt="Interior de diseño moderno"
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to top, rgba(17,17,16,0.75) 0%, rgba(17,17,16,0.2) 60%, transparent 100%)",
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative h-full flex flex-col justify-end px-[5%] pb-16">
+        {/* Eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="label-text text-white/70 text-center mb-6"
+        >
+          Interior Design Studio
+        </motion.p>
+
+        {/* Title */}
+        <div className="text-center mb-16">
+          {lines.map((line, i) => (
+            <motion.h1
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 + i * 0.15, duration: 0.8, ease: "easeOut" }}
+              className="font-display font-light text-white uppercase leading-[1.05]"
+              style={{ fontSize: "clamp(42px, 7vw, 96px)", letterSpacing: "0.03em" }}
+            >
+              {line}
+            </motion.h1>
+          ))}
+        </div>
+
+        {/* Bottom row */}
+        <div className="flex items-end justify-between">
+          {/* Social */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="hidden md:flex gap-4 text-[11px] uppercase tracking-[0.12em] text-white/60 font-body"
+          >
+            <a href="#" className="hover:text-white/90 transition-colors duration-300">IG</a>
+            <span>·</span>
+            <a href="#" className="hover:text-white/90 transition-colors duration-300">LI</a>
+            <span>·</span>
+            <a href="#" className="hover:text-white/90 transition-colors duration-300">BE</a>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.6 }}
+            className="hidden md:flex flex-col items-center gap-3"
+          >
+            <div className="h-12 w-[1px] bg-white/20 overflow-hidden relative">
+              <div className="absolute w-full h-1/2 bg-white animate-scroll-line" />
+            </div>
+            <span
+              className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-body"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              Scroll
+            </span>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
