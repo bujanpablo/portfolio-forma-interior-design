@@ -2,19 +2,37 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Instagram, Facebook, Linkedin, Music } from "lucide-react";
 
-const footerLinkKeys = ["footer.home", "footer.about", "footer.projects", "footer.services", "footer.contact"];
+const footerLinks = [
+  { key: "footer.home", target: "top" },
+  { key: "footer.about", target: "#nosotros" },
+  { key: "footer.projects", target: "#proyectos" },
+  { key: "footer.services", target: "#servicios" },
+  { key: "footer.contact", target: "#contacto" },
+];
 
 const Footer = () => {
   const { t } = useLanguage();
+
+  const scrollTo = (target: string) => {
+    if (target === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <footer className="bg-dark py-16 md:py-24">
       <div className="px-[5%] max-w-[1440px] mx-auto">
         <div className="flex flex-wrap gap-6 md:gap-8 mb-12 md:mb-16">
-          {footerLinkKeys.map((key) => (
-            <span key={key} className="label-text text-muted-stone hover:text-white/80 transition-colors duration-300">
-              {t(key)}
-            </span>
+          {footerLinks.map((link) => (
+            <button
+              key={link.key}
+              onClick={() => scrollTo(link.target)}
+              className="label-text text-muted-stone hover:text-white/80 transition-colors duration-300"
+            >
+              {t(link.key)}
+            </button>
           ))}
         </div>
 
