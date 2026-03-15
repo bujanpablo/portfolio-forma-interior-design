@@ -17,9 +17,8 @@ const translations: Record<string, Record<Lang, string>> = {
 
   // Hero
   "hero.eyebrow": { es: "Interior Design Studio", en: "Interior Design Studio" },
-  "hero.line1": { es: "Todo espacio tiene", en: "Every space has" },
-  "hero.line2": { es: "el potencial", en: "the potential" },
-  "hero.line3": { es: "de inspirar.", en: "to inspire." },
+  "hero.line1": { es: "Interiores que inspiran,", en: "Interiors that inspire," },
+  "hero.line2": { es: "espacios que perduran.", en: "spaces that endure." },
   "hero.scroll": { es: "Scroll", en: "Scroll" },
 
   // Floating Collage

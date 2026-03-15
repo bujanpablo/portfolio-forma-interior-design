@@ -4,7 +4,7 @@ import { Instagram, Facebook, Linkedin, Music } from "lucide-react";
 
 const Hero = () => {
   const { t } = useLanguage();
-  const lines = [t("hero.line1"), t("hero.line2"), t("hero.line3")];
+  const lines = [t("hero.line1"), t("hero.line2")];
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
