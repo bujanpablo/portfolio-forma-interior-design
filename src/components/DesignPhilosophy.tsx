@@ -63,19 +63,19 @@ const DesignPhilosophy = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="font-body text-[15px] text-stone leading-[1.85] mb-10"
+            className="font-body text-[15px] text-stone leading-[1.85] mb-5"
           >
             {t("philosophy.p2")}
           </motion.p>
-          <motion.button
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="font-body text-[12px] uppercase tracking-[0.16em] border border-charcoal text-charcoal px-8 py-3.5 hover:bg-charcoal hover:text-warm-white transition-all duration-500"
+            className="font-body text-[15px] text-stone leading-[1.85]"
           >
-            {t("philosophy.cta")}
-          </motion.button>
+            {t("philosophy.p3")}
+          </motion.p>
         </div>
       </div>
     </section>
