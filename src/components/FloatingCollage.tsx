@@ -35,75 +35,103 @@ const photos = [
   },
 ];
 
+const CrossfadePhoto = ({ src, hoverSrc, className = "" }: { src: string; hoverSrc: string; className?: string }) => {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className={`relative overflow-hidden ${className}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <img
+        src={src}
+        alt="Interior design"
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
+      <img
+        src={hoverSrc}
+        alt="Interior design"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out"
+        style={{ opacity: hovered ? 1 : 0 }}
+        loading="lazy"
+      />
+    </div>
+  );
+};
+
 const FloatingCollage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const { t } = useLanguage();
 
-  return (
-    <section
-      id="nosotros"
-      ref={ref}
-      className="relative bg-warm-white overflow-hidden"
-      style={{ minHeight: 700 }}
-    >
-      {/* Central title */}
-      <div
-        className="absolute z-10 text-center px-[5%]"
-        style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+  const titleBlock = (
+    <>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+        className="label-text text-stone mb-6"
       >
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="label-text text-stone mb-6"
-        >
-          {t("collage.label")}
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display font-normal uppercase leading-[1.1]"
-          style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
-        >
-          {t("collage.line1")}
-          <br />
-          <span>{t("collage.design")}</span>
-          <span className="text-terracotta">{t("collage.and")}</span>
-          <br />
-          {t("collage.line3")}
-        </motion.h2>
-      </div>
+        {t("collage.label")}
+      </motion.p>
+      <motion.h2
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        className="font-display font-normal uppercase leading-[1.1]"
+        style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
+      >
+        {t("collage.line1")}
+        <br />
+        <span>{t("collage.design")}</span>
+        <span className="text-terracotta">{t("collage.and")}</span>
+        <br />
+        {t("collage.line3")}
+      </motion.h2>
+    </>
+  );
 
-      {/* Floating photos — desktop */}
-      <div className="hidden lg:block" style={{ minHeight: 700 }}>
+  return (
+    <section id="nosotros" ref={ref} className="bg-warm-white overflow-hidden">
+      {/* Desktop — absolute floating layout */}
+      <div className="hidden lg:block relative" style={{ minHeight: 700 }}>
+        <div
+          className="absolute z-10 text-center px-[5%]"
+          style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+        >
+          {titleBlock}
+        </div>
         {photos.map((photo, i) => (
           <ParallaxPhoto key={i} photo={photo} scrollYProgress={scrollYProgress} />
         ))}
       </div>
 
-      {/* Mobile fallback grid */}
-      <div className="lg:hidden grid grid-cols-2 gap-3 px-[5%] py-24">
-        {photos.slice(0, 4).map((photo, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            className="overflow-hidden"
-          >
-            <img
-              src={photo.src}
-              alt="Interior design"
-              className="w-full h-48 object-cover hover:scale-[1.04] transition-transform duration-700"
-              loading="lazy"
-            />
-          </motion.div>
-        ))}
+      {/* Mobile — stacked vertical layout */}
+      <div className="lg:hidden">
+        <div className="text-center px-6 pt-10 pb-6">
+          {titleBlock}
+        </div>
+        <div className="grid grid-cols-2 gap-2 px-6 pb-10">
+          {photos.map((photo, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+            >
+              <CrossfadePhoto
+                src={photo.src}
+                hoverSrc={photo.hover}
+                className="h-[200px] w-full"
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -116,11 +144,10 @@ interface ParallaxPhotoProps {
 
 const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, photo.speed * -400]);
-  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      className="absolute overflow-hidden cursor-pointer"
+      className="absolute"
       style={{
         width: photo.w,
         height: photo.h,
@@ -130,26 +157,9 @@ const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
         rotate: photo.rotate,
         y,
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       data-cursor-view
     >
-      {/* Base image */}
-      <img
-        src={photo.src}
-        alt="Interior design"
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out"
-        style={{ opacity: hovered ? 0 : 1 }}
-        loading="lazy"
-      />
-      {/* Hover image */}
-      <img
-        src={photo.hover}
-        alt="Interior design"
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out"
-        style={{ opacity: hovered ? 1 : 0 }}
-        loading="lazy"
-      />
+      <CrossfadePhoto src={photo.src} hoverSrc={photo.hover} className="w-full h-full" />
     </motion.div>
   );
 };
