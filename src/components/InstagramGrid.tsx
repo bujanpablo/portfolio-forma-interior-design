@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const photos = [
-  { src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", tall: true },
-  { src: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&q=80", tall: false },
-  { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80", tall: false },
-  { src: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?w=400&q=80", tall: true },
+  "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=85",
+  "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=85",
+  "https://images.unsplash.com/photo-1615529162924-f8605388461d?w=600&q=85",
+  "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=85",
 ];
 
 const InstagramGrid = () => {
