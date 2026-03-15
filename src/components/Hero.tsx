@@ -10,9 +10,14 @@ const Hero = () => {
       {/* Background image with fallback */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85"
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1800&q=85"
           alt="Interior de diseño moderno"
           className="w-full h-full object-cover"
+          loading="eager"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src =
+              "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=85";
+          }}
           loading="eager"
           onError={(e) => {
             (e.target as HTMLImageElement).src =
