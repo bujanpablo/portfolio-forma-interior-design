@@ -65,6 +65,10 @@ const translations: Record<string, Record<Lang, string>> = {
     es: "Trabajamos con materiales nobles, luz natural y proporciones que generan calma. La funcionalidad y la estética no compiten — conviven en cada decisión.",
     en: "We work with noble materials, natural light, and proportions that generate calm. Functionality and aesthetics don't compete — they coexist in every decision.",
   },
+  "philosophy.p3": {
+    es: "Cada proyecto es único, como única es la persona que lo habita. Por eso trabajamos de manera personalizada, acompañando cada etapa desde el concepto inicial hasta el último detalle de la ejecución.",
+    en: "Every project is unique, just like the person who inhabits it. That's why we work in a personalized way, accompanying each stage from the initial concept to the last detail of execution.",
+  },
   "philosophy.cta": { es: "Conocé el estudio", en: "Meet the studio" },
 
   // Services
