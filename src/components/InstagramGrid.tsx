@@ -42,22 +42,20 @@ const InstagramGrid = () => {
         </motion.h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {photos.map((photo, i) => (
+          {photos.map((src, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`overflow-hidden ${photo.tall ? "row-span-1 md:row-span-1" : ""}`}
+              className="overflow-hidden"
               data-cursor-view
             >
-              <motion.img
-                src={photo.src}
+              <img
+                src={src}
                 alt={t("instagram.imgAlt")}
-                className={`w-full object-cover ${i % 2 === 0 ? "h-[260px] md:h-[360px]" : "h-[200px] md:h-[280px]"}`}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="w-full h-[260px] md:h-[340px] object-cover transition-transform duration-500 ease-out hover:scale-[1.04]"
                 loading="lazy"
               />
             </motion.div>
