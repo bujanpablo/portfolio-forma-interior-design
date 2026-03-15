@@ -24,10 +24,8 @@ const translations: Record<string, Record<Lang, string>> = {
 
   // Floating Collage
   "collage.label": { es: "Forma Studio", en: "Forma Studio" },
-  "collage.line1": { es: "La fusión perfecta de", en: "The perfect fusion of" },
-  "collage.design": { es: "DISEÑO ", en: "DESIGN " },
-  "collage.and": { es: "y", en: "&" },
-  "collage.line3": { es: "funcionalidad", en: "functionality" },
+  "collage.line1": { es: "Espacios que cuentan tu", en: "Spaces that tell your" },
+  "collage.accent": { es: "historia", en: "story" },
   "collage.imgAlt": { es: "Diseño interior", en: "Interior design" },
 
   // Marquee

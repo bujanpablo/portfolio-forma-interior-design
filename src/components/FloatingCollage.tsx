@@ -85,12 +85,7 @@ const FloatingCollage = () => {
         className="font-display font-normal uppercase leading-[1.1]"
         style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
       >
-        {t("collage.line1")}
-        <br />
-        <span>{t("collage.design")}</span>
-        <span className="text-terracotta">{t("collage.and")}</span>
-        <br />
-        {t("collage.line3")}
+        {t("collage.line1")} <span className="text-terracotta">{t("collage.accent")}</span>
       </motion.h2>
     </>
   );
