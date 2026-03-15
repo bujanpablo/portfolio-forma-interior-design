@@ -19,10 +19,6 @@ const Hero = () => {
               "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=85";
           }}
           loading="eager"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1800&q=85";
-          }}
         />
         <div
           className="absolute inset-0"
