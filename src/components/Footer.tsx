@@ -39,15 +39,15 @@ const Footer = () => {
           <span className="font-body text-[11px] text-muted-stone tracking-[0.06em]">
             {t("footer.copyright")}
           </span>
-          <span className="font-body text-[11px] uppercase tracking-[0.12em] text-muted-stone">
-            Site by{" "}
+          <span className="font-body text-[11px] tracking-[0.12em] text-muted-stone">
+            Design with love by{" "}
             <a
               href="https://www.gullyhq.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors duration-300"
+              className="text-white no-underline hover:text-terracotta transition-colors duration-300"
             >
-              GULLY.HQ™
+              @GULLY.
             </a>
           </span>
           <div className="flex gap-5 items-center">
