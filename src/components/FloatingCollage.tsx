@@ -7,31 +7,37 @@ const photos = [
     src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&q=80",
     hover: "https://images.unsplash.com/photo-1615529162924-f8605388461d?w=500&q=80",
     w: 220, h: 280, top: 40, left: "2%", right: undefined, rotate: -2, speed: 0.04,
+    drift: "translateX(-10px) translateY(-6px) scale(1.03)",
   },
   {
     src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80",
     hover: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=80",
     w: 155, h: 195, top: 280, left: "10%", right: undefined, rotate: 1.5, speed: 0.07,
+    drift: "translateX(-8px) translateY(6px) scale(1.03)",
   },
   {
     src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=450&q=80",
     hover: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=450&q=80",
     w: 190, h: 235, top: 80, left: "20%", right: undefined, rotate: 2.5, speed: 0.05,
+    drift: "translateX(-12px) translateY(-4px) scale(1.03)",
   },
   {
     src: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=80",
     hover: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&q=80",
     w: 210, h: 270, top: 30, left: undefined, right: "2%", rotate: 2, speed: 0.06,
+    drift: "translateX(10px) translateY(-6px) scale(1.03)",
   },
   {
     src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80",
     hover: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=80",
     w: 155, h: 195, top: 270, left: undefined, right: "10%", rotate: -1.5, speed: 0.08,
+    drift: "translateX(8px) translateY(6px) scale(1.03)",
   },
   {
     src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=450&q=80",
     hover: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=450&q=80",
     w: 185, h: 225, top: 70, left: undefined, right: "20%", rotate: -2.5, speed: 0.04,
+    drift: "translateX(12px) translateY(-4px) scale(1.03)",
   },
 ];
 
