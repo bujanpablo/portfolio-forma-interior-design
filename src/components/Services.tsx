@@ -92,7 +92,10 @@ const Services = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="mt-12"
         >
-          <button className="font-body text-[12px] uppercase tracking-[0.16em] bg-charcoal text-warm-white px-8 py-3.5 hover:bg-terracotta transition-colors duration-500">
+          <button
+            onClick={() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })}
+            className="font-body text-[12px] uppercase tracking-[0.16em] bg-charcoal text-warm-white px-8 py-3.5 hover:bg-terracotta transition-colors duration-500"
+          >
             {t("services.cta")}
           </button>
         </motion.div>
