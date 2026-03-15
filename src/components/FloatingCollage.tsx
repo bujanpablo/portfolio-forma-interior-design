@@ -83,7 +83,7 @@ const FloatingCollage = () => {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, delay: 0.1 }}
         className="font-display font-normal uppercase leading-[1.1]"
-        style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "0.04em" }}
+        style={{ fontSize: "clamp(24px, 3.2vw, 44px)", letterSpacing: "0.04em" }}
       >
         {t("collage.line1")}
         <br />
