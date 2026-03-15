@@ -18,7 +18,6 @@ const Hero = () => {
             (e.target as HTMLImageElement).src =
               "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=85";
           }}
-          loading="eager"
         />
         <div
           className="absolute inset-0"
