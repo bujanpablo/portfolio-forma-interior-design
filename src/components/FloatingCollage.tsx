@@ -145,6 +145,7 @@ interface ParallaxPhotoProps {
 
 const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, photo.speed * -400]);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
@@ -160,7 +161,17 @@ const ParallaxPhoto = ({ photo, scrollYProgress }: ParallaxPhotoProps) => {
       }}
       data-cursor-view
     >
-      <CrossfadePhoto src={photo.src} hoverSrc={photo.hover} className="w-full h-full" />
+      <div
+        className="w-full h-full"
+        style={{
+          transform: hovered ? photo.drift : "translateX(0) translateY(0) scale(1)",
+          transition: "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)",
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <CrossfadePhoto src={photo.src} hoverSrc={photo.hover} className="w-full h-full" />
+      </div>
     </motion.div>
   );
 };
