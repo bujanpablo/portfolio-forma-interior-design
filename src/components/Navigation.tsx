@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const navLinks = [
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Contacto", href: "#contacto" },
+const navKeys = [
+  { key: "nav.about", href: "#nosotros" },
+  { key: "nav.projects", href: "#proyectos" },
+  { key: "nav.services", href: "#servicios" },
+  { key: "nav.contact", href: "#contacto" },
 ];
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { lang, setLang, t } = useLanguage();
 
   const scrollTo = (href: string) => {
     setMenuOpen(false);
@@ -22,7 +24,6 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY >= 80);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -36,25 +37,45 @@ const Navigation = () => {
         transition: "background 0.4s ease, box-shadow 0.4s ease",
       }}
     >
-      <a
-        href="#"
-        onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-        className="font-display text-white text-xl tracking-[0.22em] uppercase font-light"
-        style={{ cursor: "none" }}
-      >
-        Forma
-      </a>
+      <div className="flex items-center gap-6">
+        <a
+          href="#"
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          className="font-display text-white text-xl tracking-[0.22em] uppercase font-light"
+          style={{ cursor: "none" }}
+        >
+          Forma
+        </a>
+        {/* Language toggle */}
+        <div className="flex items-center gap-1 text-[11px] uppercase tracking-[0.16em] font-body" style={{ cursor: "none" }}>
+          <button
+            onClick={() => setLang("es")}
+            className="transition-opacity duration-300"
+            style={{ color: "white", opacity: lang === "es" ? 1 : 0.4, cursor: "none" }}
+          >
+            ES
+          </button>
+          <span className="text-white" style={{ opacity: 0.4 }}>·</span>
+          <button
+            onClick={() => setLang("en")}
+            className="transition-opacity duration-300"
+            style={{ color: "white", opacity: lang === "en" ? 1 : 0.4, cursor: "none" }}
+          >
+            EN
+          </button>
+        </div>
+      </div>
 
       {/* Desktop nav */}
       <div className="hidden md:flex items-center gap-8">
-        {navLinks.map((link) => (
+        {navKeys.map((link) => (
           <button
             key={link.href}
             onClick={() => scrollTo(link.href)}
             className="text-white text-[11px] uppercase tracking-[0.16em] font-body font-normal transition-opacity duration-300 hover:opacity-60"
             style={{ cursor: "none" }}
           >
-            {link.label}
+            {t(link.key)}
           </button>
         ))}
       </div>
@@ -87,7 +108,7 @@ const Navigation = () => {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 bg-charcoal flex flex-col items-center justify-center gap-8 z-[105]"
           >
-            {navLinks.map((link, i) => (
+            {navKeys.map((link, i) => (
               <motion.button
                 key={link.href}
                 initial={{ opacity: 0, y: 20 }}
@@ -96,7 +117,7 @@ const Navigation = () => {
                 onClick={() => scrollTo(link.href)}
                 className="font-display text-white text-3xl uppercase tracking-[0.1em] font-light"
               >
-                {link.label}
+                {t(link.key)}
               </motion.button>
             ))}
           </motion.div>

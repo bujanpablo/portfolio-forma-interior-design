@@ -1,7 +1,10 @@
-const items = "Diseño Residencial · Remodelaciones · Espacios Comerciales · Home Styling · Consultoría · ";
-const repeated = items.repeat(6);
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MarqueeStrip = () => {
+  const { t } = useLanguage();
+  const items = t("marquee.items");
+  const repeated = items.repeat(6);
+
   return (
     <section className="bg-warm-white border-t border-b border-subtle py-6 overflow-hidden">
       <div className="animate-marquee whitespace-nowrap flex">
